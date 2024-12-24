@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Giao Dịch</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<h1>Bảng Giao Dịch</h1>
+<a href="/transactions/create">Add Transaction</a>
+<select>
+    <option></option>
+</select>
+<table>
+    <thead>
+    <tr>
+        <th>Mã Giao Dịch</th>
+        <th>Tên Khách Hàng</th>
+        <th>Loại Dịch Vụ</th>
+        <th>Ngày Giao Dịch</th>
+        <th>Đơn Giá (VND/m²)</th>
+        <th>Diện Tích (m²)</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tran : ${transactions}">
+        <td th:text="${tran.transactionCode}"></td>
+        <td th:text="${tran.customerCode.name}"></td>
+        <td th:text="${tran.category.name}"></td>
+        <td th:text="${tran.date}"></td>
+        <td th:text="${tran.unitPrice}"></td>
+        <td th:text="${tran.acreage}">100</td>
+        <td><a href="#">Chi tiết</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Form Giao Dịch</title>
+</head>
+<body>
+<h1>Thêm mới Giao Dịch</h1>
+<form th:action="@{/transactions/create}" method="post" th:object="${transactions}">
+  <label for="transactionCode">Mã giao dịch:</label>
+  <input type="text" id="transactionCode" th:field="*{transactionCode}" name="transactionCode" placeholder="MGD-XXXX" required>
+  <span th:if="${#fields.hasErrors('transactionCode')}" th:errors="*{transactionCode}"></span>
+  <br><br>
+
+  <label for="customerId">Tên khách hàng:</label>
+  <select id="customerId" name="customerId" th:field="*{customerCode}" required>
+    <option th:each="customer : ${customers}"
+            th:value="${customer.id}"
+            th:text="${customer.name}">
+    </option>
+  </select>
+  <br><br>
+
+  <label>Loại dịch vụ:</label><br>
+  <div th:each="category : ${categories}">
+    <input type="radio" name="serviceType" th:value="${category.id}" required>
+    <label th:text="${category.name}"></label><br>
+  </div>
+  <br><br>
+  <label for="transactionDate">Ngày giao dịch:</label>
+  <input type="date" id="transactionDate" th:field="*{date}" name="transactionDate" required>
+  <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+  <br><br>
+
+  <label for="unitPrice">Đơn giá (VND/m2):</label>
+  <input type="number" id="unitPrice" name="unitPrice" th:field="*{unitPrice}"  required>
+  <span th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
+  <br><br>
+
+  <label for="area">Diện tích (m2):</label>
+  <input type="number" id="area" name="area" th:field="*{acreage}" required>
+  <span th:if="${#fields.hasErrors('acreage')}" th:errors="*{acreage}"></span>
+  <br><br>
+
+  <button type="submit">Thêm giao dịch</button>
+</form>
+</body>
+</html>
