@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -24,10 +25,10 @@ public class Transaction {
     @NotNull(message = "Khách hàng không được để trống.")
     @JoinColumn(name = "customer_id") // Tên cột trong DB
     private Customer customerCode;
-    @FutureOrPresent(message = "Ngày giao dịch phải là ngày hiện tại hoặc tương lai.")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent(message = "Ngày giao dịch phải là ngày hiện tại hoặc tương lai . Và theo định dạng dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDate date;
     @NotNull(message = "Đơn giá không được để trống.")
     @Min(value = 500001, message = "Đơn giá phải lớn hơn hoặc bằng 500,001 VND.")
     private Double unitPrice;

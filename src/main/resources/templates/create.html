@@ -27,7 +27,7 @@
   </div>
   <br><br>
   <label for="transactionDate">Ngày giao dịch:</label>
-  <input type="date" id="transactionDate" th:field="*{date}" name="transactionDate" required>
+  <input type="text" id="transactionDate" th:field="*{date}" name="transactionDate" required>
   <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
   <br><br>
 
